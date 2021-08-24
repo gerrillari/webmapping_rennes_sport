@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<!--
+	Stellar by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+ASSOCIATIONS SPORTIVES
+-->
+<html>
+  <head>
+    <title>Carte des lieux de sports individuels</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8
+      ]><script src="assets/js/ie/html5shiv.js"></script
+    ><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!--[if lte IE 9
+      ]><link rel="stylesheet" href="assets/css/ie9.css"
+    /><![endif]-->
+    <!--[if lte IE 8
+      ]><link rel="stylesheet" href="assets/css/ie8.css"
+    /><![endif]-->
+
+    <!-- Appel API mapbox -->
+
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js"></script>
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      #map {
+        width: 92%;
+        height: 700px;
+        margin-right: auto;
+        margin-left: auto;
+        border-width: 2px;
+        border-style: solid;
+        border-color: black;
+      }
+
+      #menu {
+        width: 18%;
+        margin-right: 2px;
+        margin-left: 50px;
+        z-index: 1;
+        top: 80px;
+        right: 8px;
+        position: absolute;
+        border-color: #ffffff;
+        background-color: #993366;
+        font-size: 14px;
+        font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+        border-radius: 10px;
+      }
+
+      #menu a {
+        display: block;
+        color: #ffffff;
+        padding: 8px 16px;
+        text-align: center;
+        font-weight: bold;
+        border-style: solid;
+        border-color: #000000;
+        text-decoration: none;
+      }
+
+      #menu a.active {
+        background-color: #f3d8e6;
+        color: #000000;
+
+        border-radius: 10px;
+      }
+
+      #menu a:hover:not(.active) {
+        background-color: #f3d8e6;
+        color: #000000;
+
+        border-radius: 10px;
+      }
+
+      #menu1 {
+        width: 7%;
+        margin-right: auto;
+        margin-left: auto;
+        z-index: 1;
+        top: 80px;
+        left: 8px;
+        position: absolute;
+        border-color: #ffffff;
+        background-color: #95c11e;
+        font-size: 12px;
+        font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+        border-radius: 20px;
+      }
+
+      #menu1 a {
+        display: block;
+        color: #ffffff;
+        padding: 8px 16px;
+        text-align: center;
+        font-weight: bold;
+        border-style: solid;
+        border-color: #000000;
+        text-decoration: none;
+      }
+
+      #menu1 a.active {
+        background-color: #ffffff;
+        color: #000000;
+        border: 2px solid #95c11e;
+        border-radius: 20px;
+      }
+
+      #menu1 a:hover:not(.active) {
+        background-color: #ffffff;
+        color: #000000;
+        border: 2px solid #95c11e;
+        border-radius: 20px;
+      }
+
+      #menu2 {
+        width: 7%;
+        margin-right: auto;
+        margin-left: auto;
+        z-index: 1;
+        top: 122px;
+        left: 8px;
+        position: absolute;
+        border-color: #ffffff;
+        background-color: #008bd2;
+        font-size: 12px;
+        font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+        border-radius: 20px;
+      }
+
+      #menu2 a {
+        display: block;
+        color: #ffffff;
+        padding: 8px 16px;
+        text-align: center;
+        font-weight: bold;
+        border-style: solid;
+        border-color: #000000;
+        text-decoration: none;
+      }
+
+      #menu2 a.active {
+        background-color: #ffffff;
+        color: #000000;
+        border: 2px solid #008bd2;
+        border-radius: 20px;
+      }
+
+      #menu2 a:hover:not(.active) {
+        background-color: #ffffff;
+        color: #000000;
+        border: 2px solid #008bd2;
+        border-radius: 20px;
+      }
+
+      #menu3 {
+        width: 7%;
+        margin-right: auto;
+        margin-left: auto;
+        z-index: 1;
+        top: 164px;
+        left: 8px;
+        position: absolute;
+        border-color: #ffffff;
+        background-color: #00893e;
+        font-size: 12px;
+        font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+        border-radius: 20px;
+      }
+
+      #menu3 a {
+        display: block;
+        color: #ffffff;
+        padding: 8px 16px;
+        text-align: center;
+        font-weight: bold;
+        border-style: solid;
+        border-color: #000000;
+        text-decoration: none;
+      }
+
+      #menu3 a.active {
+        background-color: #ffffff;
+        color: #000000;
+        border: 2px solid #00893e;
+        border-radius: 20px;
+      }
+
+      #menu3 a:hover:not(.active) {
+        background-color: #ffffff;
+        color: #000000;
+        border: 2px solid #00893e;
+        border-radius: 20px;
+      }
+
+      #menu4 {
+        width: 7%;
+        margin-right: auto;
+        margin-left: auto;
+        z-index: 1;
+        top: 206px;
+        left: 8px;
+        position: absolute;
+        border-color: #ffffff;
+        background-color: #6f2282;
+        font-size: 12px;
+        font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+        border-radius: 20px;
+      }
+
+      #menu4 a {
+        display: block;
+        color: #ffffff;
+        padding: 8px 16px;
+        text-align: center;
+        font-weight: bold;
+        border-style: solid;
+        border-color: #000000;
+        text-decoration: none;
+      }
+
+      #menu4 a.active {
+        background-color: #ffffff;
+        color: #000000;
+        border: 2px solid #6f2282;
+        border-radius: 20px;
+      }
+
+      #menu4 a:hover:not(.active) {
+        background-color: #ffffff;
+        color: #000000;
+        border: 2px solid #6f2282;
+        border-radius: 20px;
+      }
+
+      #menu5 {
+        width: 7%;
+        margin-right: auto;
+        margin-left: auto;
+        z-index: 1;
+        top: 248px;
+        left: 8px;
+        position: absolute;
+        border-color: #ffffff;
+        background-color: #f39200;
+        font-size: 12px;
+        font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+        border-radius: 20px;
+      }
+
+      #menu5 a {
+        display: block;
+        color: #ffffff;
+        padding: 8px 16px;
+        text-align: center;
+        font-weight: bold;
+        border-style: solid;
+        border-color: #000000;
+        text-decoration: none;
+      }
+
+      #menu5 a.active {
+        background-color: #ffffff;
+        color: #000000;
+        border: 2px solid #f39200;
+        border-radius: 20px;
+      }
+
+      #menu5 a:hover:not(.active) {
+        background-color: #ffffff;
+        color: #000000;
+        border: 2px solid #f39200;
+        border-radius: 20px;
+      }
+
+      #menu6 {
+        width: 7%;
+        margin-right: auto;
+        margin-left: auto;
+        z-index: 1;
+        top: 290px;
+        left: 8px;
+        position: absolute;
+        border-color: #ffffff;
+        background-color: #61c3d9;
+        font-size: 12px;
+        font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+        border-radius: 20px;
+      }
+
+      #menu6 a {
+        display: block;
+        color: #ffffff;
+        padding: 8px 16px;
+        text-align: center;
+        font-weight: bold;
+        border-style: solid;
+        border-color: #000000;
+        text-decoration: none;
+      }
+
+      #menu6 a.active {
+        background-color: #ffffff;
+        color: #000000;
+        border: 2px solid #61c3d9;
+        border-radius: 20px;
+      }
+
+      #menu6 a:hover:not(.active) {
+        background-color: #ffffff;
+        color: #000000;
+        border: 2px solid #61c3d9;
+        border-radius: 20px;
+      }
+
+      #menu7 {
+        width: 7%;
+        margin-right: auto;
+        margin-left: auto;
+        z-index: 1;
+        top: 332px;
+        left: 8px;
+        position: absolute;
+        border-color: #ffffff;
+        background-color: #ee1d23;
+        font-size: 12px;
+        font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+        border-radius: 20px;
+      }
+
+      #menu7 a {
+        display: block;
+        color: #ffffff;
+        padding: 8px 16px;
+        text-align: center;
+        font-weight: bold;
+        border-style: solid;
+        border-color: #000000;
+        text-decoration: none;
+      }
+
+      #menu7 a.active {
+        background-color: #ffffff;
+        color: #000000;
+        border: 2px solid #ee1d23;
+        border-radius: 20px;
+      }
+
+      #menu7 a:hover:not(.active) {
+        background-color: #ffffff;
+        color: #000000;
+        border: 2px solid #ee1d23;
+        border-radius: 20px;
+      }
+
+      #menu8 {
+        width: 7%;
+        margin-right: auto;
+        margin-left: auto;
+        z-index: 1;
+        top: 374px;
+        left: 8px;
+        position: absolute;
+        border-color: #ffffff;
+        background-color: #2b4794;
+        font-size: 12px;
+        font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+        border-radius: 20px;
+      }
+
+      #menu8 a {
+        display: block;
+        color: #ffffff;
+        padding: 8px 16px;
+        text-align: center;
+        font-weight: bold;
+        border-style: solid;
+        border-color: #000000;
+        text-decoration: none;
+      }
+
+      #menu8 a.active {
+        background-color: #ffffff;
+        color: #000000;
+        border: 2px solid #2b4794;
+        border-radius: 20px;
+      }
+
+      #menu8 a:hover:not(.active) {
+        background-color: #ffffff;
+        color: #000000;
+        border: 2px solid #2b4794;
+        border-radius: 20px;
+      }
+
+      .mapboxgl-popup-content {
+        color: #000000;
+        background-color: floralwhite;
+        max-width: 200px;
+        max-height: 200px;
+        font: "Helvetica Neue";
+        box-shadow: 3px 3px 2px grey;
+      }
+    </style>
+
+    <!--Les objets -->
+  </head>
+  <body>
+    <!-- Wrapper -->
+    <div id="header-wrapper">
+      <div id="header">
+        <!-- Nav -->
+        <nav id="nav">
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+
+            <li><a href="script_assos.html">Associations sportives</a></li>
+            <li class="current">
+              <a href="sports_indiv.html">Sports individuels</a>
+            </li>
+            <li><a href="sports_collec.html">Sports collectifs</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Main -->
+    <div id="main">
+      <!-- Carte -->
+      <section id="content" class="map">
+        <!--Onglets géographiques-->
+
+        <div id="map">
+          <div>
+            <button id="Rennes">Rennes</button>
+            <button id="Centre">Centre - St-Hélier</button>
+            <button id="St_Martin">St-Martin - Maurepas</button>
+            <button id="Beaulieu">Beaulieu - Longs-Champs</button>
+            <button id="Poterie">Poterie - Francisco Ferrer</button>
+            <button id="Sud_Gare">Sud-Gare - Bréquigny</button>
+            <button id="Cleunay">Cleunay - Bourg l'Evesque</button>
+            <button id="Villejean">Villejean - Beauregard</button>
+          </div>
+          <div id="menu"></div>
+          <div id="menu1"></div>
+          <div id="menu2"></div>
+          <div id="menu2"></div>
+          <div id="menu3"></div>
+          <div id="menu4"></div>
+          <div id="menu5"></div>
+          <div id="menu6"></div>
+          <div id="menu7"></div>
+          <div id="menu8"></div>
+        </div>
+
+        <!--Les scripts-->
+
+        <script>
+          // AccesToken
+          mapboxgl.accessToken =
+            "pk.eyJ1IjoiY2hha2F4IiwiYSI6ImNqN2x5YmVrYTJsdGozMHBmN3BrYWNqd2YifQ.mExpTHeFBpnaQHQsBiLyjw";
+          // Configuration de la carte
+          var map = new mapboxgl.Map({
+            container: "map",
+            style: "mapbox://styles/chakax/cj8iybtlt3kbq2spbggrvtkqe", // Fond de carte
+            center: [-1.67075, 48.109625], // lat/long
+            zoom: 13, // zoom
+            pitch: 50, // Rotation
+            bearing: -5, // Inclinaison
+          });
+
+          // Ajout de couches OSM
+          map.on("load", function () {
+            //Appel de la source de données
+            map.addSource("mapbox-streets-v7", {
+              type: "vector",
+              url: "mapbox://mapbox.mapbox-streets-v7",
+            });
+            // Ajout de la couche routes
+            map.addLayer({
+              id: "routes", // nom que l'on choisit pour la couche
+              type: "line", // dans mapbox, 4 types qui déterminent la forme (symbol, circle, fill (polygone), line)
+              source: "mapbox-streets-v7", // on reprend le nom de la source déterminé dans map.addsource
+              layout: { visibility: "none" },
+              "source-layer": "road", // nom de la couche dans mapbox
+              //"filter": ['==', 'class', 'trunk'], // ligne de code pour afficher seulement les routes de type 'trunk'
+              filter: ["all", ["in", "class", "motorway", "trunk", "primary"]], // pour afficher une sélection de plusieurs types de routes
+              paint: { "line-color": "#B22222", "line-width": 2 },
+            });
+            // Batiments
+            map.addLayer({
+              id: "batiments",
+              type: "fill",
+              source: "mapbox-streets-v7",
+              layout: { visibility: "none" },
+              "source-layer": "building",
+              paint: { "fill-color": "#FFFFFF", "fill-opacity": 0.8 },
+              minzoom: 18, // zoom à partir duquel s'affiche la couche (voir aussi maxzoom)
+            });
+
+            //Arrêts de bus - visible
+
+            map.addSource("Arretc", {
+              type: "vector",
+              url: "mapbox://tamalji.5a7mst11",
+            });
+            map.addLayer({
+              id: "Arretc",
+              type: "circle",
+              source: "Arretc",
+              "source-layer": "arretC-7uvgdq",
+              layout: { visibility: "none" },
+              paint: { "circle-radius": 5, "circle-color": "#f5f60d" },
+            });
+
+            // Ajout de données uploadées dans les tilesets de mapbox
+
+            // Ajout de données perso uploadées dans les tilesets de mapbox, ici les parcs
+            map.addSource("Parcs", {
+              type: "vector",
+              url: "mapbox://inesol.3b2939au",
+            }); // map ID dans mapbox
+            map.addLayer({
+              id: "Running",
+              type: "fill",
+              source: "Parcs",
+              "source-layer": "parcs_rennes-0xqg9h", // nom de la couche générée par mapbox
+              layout: { visibility: "none" },
+              paint: { "fill-color": "#99ff66" },
+            });
+
+            //parcs hover
+            map.addSource("Parcs_hover", {
+              type: "vector",
+              url: "mapbox://inesol.3b2939au",
+            }); // map ID dans mapbox
+            map.addLayer({
+              id: "Running_hover",
+              type: "fill",
+              source: "Parcs_hover",
+              "source-layer": "parcs_rennes-0xqg9h", // nom de la couche générée par mapbox
+              layout: { visibility: "none" },
+              paint: { "fill-color": "#33cc33" },
+            });
+
+            //Piscines
+            map.addSource("Piscines", {
+              type: "vector",
+              url: "mapbox://inesol.7wyorwfa",
+            }); // map ID dans mapbox
+            map.loadImage(
+              "https://cdn3.iconfinder.com/data/icons/swim/154/swim-round-256.png",
+              function (error, image) {
+                if (error) throw error;
+                map.addImage("pisci", image);
+                map.addLayer({
+                  id: "Piscines",
+                  type: "symbol",
+                  source: "Piscines",
+                  "source-layer": "piscines2_rennes-1lk9p3", // nom de la couche générée par mapbox
+                  layout: {
+                    visibility: "none",
+                    "icon-image": "pisci",
+                    "icon-size": 0.13,
+                  },
+                });
+              }
+            );
+
+            //Salles de sport
+            map.addSource("Salles", {
+              type: "vector",
+              url: "mapbox://inesol.41d8qmox",
+            });
+            map.loadImage(
+              "https://cdn0.iconfinder.com/data/icons/sport-achievment-badges/128/sport_badges-07-256.png",
+
+              function (error, image) {
+                if (error) throw error;
+                map.addImage("salles", image);
+                map.addLayer({
+                  id: "Salles de sport",
+                  type: "symbol",
+                  source: "Salles",
+                  "source-layer": "salles-sport_rennes-9umqks",
+                  layout: {
+                    visibility: "none",
+                    "icon-image": "salles",
+                    "icon-size": 0.12,
+                  },
+                });
+              }
+            );
+
+            //Pistes d'athlé
+            map.addSource("Athletisme", {
+              type: "vector",
+              url: "mapbox://inesol.douubq2n",
+            });
+
+            map.loadImage(
+              "https://cdn4.iconfinder.com/data/icons/olympic-games-19/512/athletics-running-runner-shoe-olympics-jogging-256.png",
+
+              function (error, image) {
+                if (error) throw error;
+                map.addImage("athle", image);
+
+                map.addLayer({
+                  id: "Athlétisme",
+                  type: "symbol",
+                  source: "Athletisme",
+                  "source-layer": "pistes_athle_rennes-dfrw6a",
+                  layout: {
+                    visibility: "none",
+                    "icon-image": "athle",
+                    "icon-size": 0.12,
+                  },
+                });
+              }
+            );
+
+            //Tennis
+            map.addSource("Tennis", {
+              type: "vector",
+              url: "mapbox://inesol.ce69er8s",
+            });
+
+            map.loadImage(
+              "https://cdn0.iconfinder.com/data/icons/sports-icons-rounded/110/Tennis-256.png",
+
+              function (error, image) {
+                if (error) throw error;
+                map.addImage("tennis", image);
+                map.addLayer({
+                  id: "Tennis",
+                  type: "symbol",
+                  source: "Tennis",
+                  "source-layer": "tennis2-9efgvx",
+                  layout: {
+                    visibility: "none",
+                    "icon-image": "tennis",
+                    "icon-size": 0.12,
+                  },
+                });
+              }
+            );
+
+            //lignec1
+            map.addSource("Lignec1", {
+              type: "vector",
+              url: "mapbox://tamalji.dj4641oy",
+            });
+            map.addLayer({
+              id: "C1",
+              type: "line",
+              source: "Lignec1",
+              "source-layer": "lignec1-cpzbsi",
+              layout: { visibility: "none" },
+              paint: { "line-width": 3, "line-color": "#95c11e" },
+            });
+            //lignec2
+            map.addSource("Lignec2", {
+              type: "vector",
+              url: "mapbox://tamalji.9t2yk6ua",
+            });
+            map.addLayer({
+              id: "C2",
+              type: "line",
+              source: "Lignec2",
+              "source-layer": "lignec2-ciqs6q",
+              layout: { visibility: "none" },
+              paint: { "line-width": 3, "line-color": "#008bd2" },
+            });
+
+            //lignec3
+            map.addSource("Lignec3", {
+              type: "vector",
+              url: "mapbox://tamalji.dovv46za",
+            });
+            map.addLayer({
+              id: "C3",
+              type: "line",
+              source: "Lignec3",
+              "source-layer": "lignec3-9w4jku",
+              layout: { visibility: "none" },
+              paint: { "line-width": 3, "line-color": "#00893e" },
+            });
+            //lignec4
+            map.addSource("Lignec4", {
+              type: "vector",
+              url: "mapbox://tamalji.1orc7wv1",
+            });
+            map.addLayer({
+              id: "C4",
+              type: "line",
+              source: "Lignec4",
+              "source-layer": "lignec4-a2peic",
+              layout: { visibility: "none" },
+              paint: { "line-width": 3, "line-color": "#6f2282" },
+            });
+            //ligne c5
+            map.addSource("Lignec5", {
+              type: "vector",
+              url: "mapbox://tamalji.92lj520n",
+            });
+            map.addLayer({
+              id: "C5",
+              type: "line",
+              source: "Lignec5",
+              "source-layer": "lignec5-a0u9xz",
+              layout: { visibility: "none" },
+              paint: { "line-width": 3, "line-color": "#f39200" },
+            });
+
+            //lignec6
+            map.addSource("Lignec6", {
+              type: "vector",
+              url: "mapbox://tamalji.ao4egnko",
+            });
+            map.addLayer({
+              id: "C6",
+              type: "line",
+              source: "Lignec6",
+              "source-layer": "lignec6-4701k6",
+              layout: { visibility: "none" },
+              paint: { "line-width": 3, "line-color": "#61c3d9" },
+            });
+
+            //ligne metro a
+            map.addSource("LigneMa", {
+              type: "vector",
+              url: "mapbox://tamalji.902u9gqh",
+            });
+            map.addLayer({
+              id: "Métro A",
+              type: "line",
+              source: "LigneMa",
+              "source-layer": "ligneMa-a6kwhl",
+              layout: { visibility: "none" },
+              paint: { "line-width": 3, "line-color": "#ee1d23" },
+            });
+
+            //ligne metro b
+            map.addSource("LigneMb", {
+              type: "vector",
+              url: "mapbox://tamalji.5a0h1nwb",
+            });
+            map.addLayer({
+              id: "Métro B",
+              type: "line",
+              source: "LigneMb",
+              "source-layer": "ligneMb-agzwrh",
+              layout: { visibility: "none" },
+              paint: { "line-width": 3, "line-color": "#2b4794" },
+            });
+
+            //Contour métro A
+            map.addSource("ContourA", {
+              type: "vector",
+              url: "mapbox://tamalji.8rs5r6v1",
+            });
+            map.addLayer({
+              id: "Contour A",
+              type: "circle",
+              source: "ContourA",
+              "source-layer": "arretmetroa-b9ya00",
+              layout: { visibility: "visible" },
+              paint: { "circle-radius": 5, "circle-color": "#ee1d23" },
+            });
+
+            //Stations de métro a
+            map.addSource("Metroa", {
+              type: "vector",
+              url: "mapbox://tamalji.8rs5r6v1",
+            });
+            map.addLayer({
+              id: "Stations de métro A",
+              type: "circle",
+              source: "Metroa",
+              "source-layer": "arretmetroa-b9ya00",
+              layout: { visibility: "visible" },
+              paint: { "circle-radius": 3, "circle-color": "#ffffff" },
+            });
+
+            //Contour métro B
+            map.addSource("ContourB", {
+              type: "vector",
+              url: "mapbox://tamalji.4vrmhz7m",
+            });
+            map.addLayer({
+              id: "Countour B",
+              type: "circle",
+              source: "ContourB",
+              "source-layer": "arretmetrob-5gbdqk",
+              layout: { visibility: "visible" },
+              paint: { "circle-radius": 5, "circle-color": "#2b4794" },
+            });
+
+            //Stations de métro b
+            map.addSource("Metrob", {
+              type: "vector",
+              url: "mapbox://tamalji.4vrmhz7m",
+            });
+            map.addLayer({
+              id: "Stations de métro B",
+              type: "circle",
+              source: "Metrob",
+              "source-layer": "arretmetrob-5gbdqk",
+              layout: { visibility: "visible" },
+              paint: { "circle-radius": 3, "circle-color": "#ffffff" },
+            });
+          });
+
+          // Configuration du menu
+          var toggleableLayerIds = [
+            "Running",
+            "Salles de sport",
+            "Piscines",
+            "Tennis",
+            "Athlétisme",
+          ];
+
+          for (var i = 0; i < toggleableLayerIds.length; i++) {
+            var id = toggleableLayerIds[i];
+            var link = document.createElement("a");
+            link.href = "#";
+            link.className = "inactive";
+            link.textContent = id;
+
+            link.onclick = function (e) {
+              var clickedLayer = this.textContent;
+              e.preventDefault();
+              e.stopPropagation();
+              var visibility = map.getLayoutProperty(
+                clickedLayer,
+                "visibility"
+              );
+              if (visibility === "visible") {
+                map.setLayoutProperty(clickedLayer, "visibility", "none");
+                this.className = "";
+              } else {
+                this.className = "active";
+                map.setLayoutProperty(clickedLayer, "visibility", "visible");
+              }
+            };
+            var layers = document.getElementById("menu");
+            layers.appendChild(link);
+          }
+
+          // 1 menu par bus pour pouvoir changer les couleurs dans le menu
+
+          var toggleableLayerIds = ["C1"];
+
+          for (var i = 0; i < toggleableLayerIds.length; i++) {
+            var id = toggleableLayerIds[i];
+            var link = document.createElement("a");
+            link.href = "#";
+            link.className = "inactive";
+            link.textContent = id;
+
+            link.onclick = function (e) {
+              var clickedLayer = this.textContent;
+              e.preventDefault();
+              e.stopPropagation();
+              var visibility = map.getLayoutProperty(
+                clickedLayer,
+                "visibility"
+              );
+              if (visibility === "visible") {
+                map.setLayoutProperty(clickedLayer, "visibility", "none");
+                this.className = "";
+              } else {
+                this.className = "active";
+                map.setLayoutProperty(clickedLayer, "visibility", "visible");
+              }
+            };
+            var layers = document.getElementById("menu1");
+            layers.appendChild(link);
+          }
+
+          var toggleableLayerIds = ["C2"];
+
+          for (var i = 0; i < toggleableLayerIds.length; i++) {
+            var id = toggleableLayerIds[i];
+            var link = document.createElement("a");
+            link.href = "#";
+            link.className = "inactive";
+            link.textContent = id;
+
+            link.onclick = function (e) {
+              var clickedLayer = this.textContent;
+              e.preventDefault();
+              e.stopPropagation();
+              var visibility = map.getLayoutProperty(
+                clickedLayer,
+                "visibility"
+              );
+              if (visibility === "visible") {
+                map.setLayoutProperty(clickedLayer, "visibility", "none");
+                this.className = "";
+              } else {
+                this.className = "active";
+                map.setLayoutProperty(clickedLayer, "visibility", "visible");
+              }
+            };
+            var layers = document.getElementById("menu2");
+            layers.appendChild(link);
+          }
+
+          var toggleableLayerIds = ["C3"];
+
+          for (var i = 0; i < toggleableLayerIds.length; i++) {
+            var id = toggleableLayerIds[i];
+            var link = document.createElement("a");
+            link.href = "#";
+            link.className = "inactive";
+            link.textContent = id;
+
+            link.onclick = function (e) {
+              var clickedLayer = this.textContent;
+              e.preventDefault();
+              e.stopPropagation();
+              var visibility = map.getLayoutProperty(
+                clickedLayer,
+                "visibility"
+              );
+              if (visibility === "visible") {
+                map.setLayoutProperty(clickedLayer, "visibility", "none");
+                this.className = "";
+              } else {
+                this.className = "active";
+                map.setLayoutProperty(clickedLayer, "visibility", "visible");
+              }
+            };
+            var layers = document.getElementById("menu3");
+            layers.appendChild(link);
+          }
+
+          var toggleableLayerIds = ["C4"];
+
+          for (var i = 0; i < toggleableLayerIds.length; i++) {
+            var id = toggleableLayerIds[i];
+            var link = document.createElement("a");
+            link.href = "#";
+            link.className = "inactive";
+            link.textContent = id;
+
+            link.onclick = function (e) {
+              var clickedLayer = this.textContent;
+              e.preventDefault();
+              e.stopPropagation();
+              var visibility = map.getLayoutProperty(
+                clickedLayer,
+                "visibility"
+              );
+              if (visibility === "visible") {
+                map.setLayoutProperty(clickedLayer, "visibility", "none");
+                this.className = "";
+              } else {
+                this.className = "active";
+                map.setLayoutProperty(clickedLayer, "visibility", "visible");
+              }
+            };
+            var layers = document.getElementById("menu4");
+            layers.appendChild(link);
+          }
+
+          var toggleableLayerIds = ["C5"];
+
+          for (var i = 0; i < toggleableLayerIds.length; i++) {
+            var id = toggleableLayerIds[i];
+            var link = document.createElement("a");
+            link.href = "#";
+            link.className = "inactive";
+            link.textContent = id;
+
+            link.onclick = function (e) {
+              var clickedLayer = this.textContent;
+              e.preventDefault();
+              e.stopPropagation();
+              var visibility = map.getLayoutProperty(
+                clickedLayer,
+                "visibility"
+              );
+              if (visibility === "visible") {
+                map.setLayoutProperty(clickedLayer, "visibility", "none");
+                this.className = "";
+              } else {
+                this.className = "active";
+                map.setLayoutProperty(clickedLayer, "visibility", "visible");
+              }
+            };
+            var layers = document.getElementById("menu5");
+            layers.appendChild(link);
+          }
+
+          var toggleableLayerIds = ["C6"];
+
+          for (var i = 0; i < toggleableLayerIds.length; i++) {
+            var id = toggleableLayerIds[i];
+            var link = document.createElement("a");
+            link.href = "#";
+            link.className = "inactive";
+            link.textContent = id;
+
+            link.onclick = function (e) {
+              var clickedLayer = this.textContent;
+              e.preventDefault();
+              e.stopPropagation();
+              var visibility = map.getLayoutProperty(
+                clickedLayer,
+                "visibility"
+              );
+              if (visibility === "visible") {
+                map.setLayoutProperty(clickedLayer, "visibility", "none");
+                this.className = "";
+              } else {
+                this.className = "active";
+                map.setLayoutProperty(clickedLayer, "visibility", "visible");
+              }
+            };
+            var layers = document.getElementById("menu6");
+            layers.appendChild(link);
+          }
+
+          var toggleableLayerIds = ["Métro A"];
+
+          for (var i = 0; i < toggleableLayerIds.length; i++) {
+            var id = toggleableLayerIds[i];
+            var link = document.createElement("a");
+            link.href = "#";
+            link.className = "inactive";
+            link.textContent = id;
+
+            link.onclick = function (e) {
+              var clickedLayer = this.textContent;
+              e.preventDefault();
+              e.stopPropagation();
+              var visibility = map.getLayoutProperty(
+                clickedLayer,
+                "visibility"
+              );
+              if (visibility === "visible") {
+                map.setLayoutProperty(clickedLayer, "visibility", "none");
+                this.className = "";
+              } else {
+                this.className = "active";
+                map.setLayoutProperty(clickedLayer, "visibility", "visible");
+              }
+            };
+            var layers = document.getElementById("menu7");
+            layers.appendChild(link);
+          }
+
+          var toggleableLayerIds = ["Métro B"];
+
+          for (var i = 0; i < toggleableLayerIds.length; i++) {
+            var id = toggleableLayerIds[i];
+            var link = document.createElement("a");
+            link.href = "#";
+            link.className = "inactive";
+            link.textContent = id;
+
+            link.onclick = function (e) {
+              var clickedLayer = this.textContent;
+              e.preventDefault();
+              e.stopPropagation();
+              var visibility = map.getLayoutProperty(
+                clickedLayer,
+                "visibility"
+              );
+              if (visibility === "visible") {
+                map.setLayoutProperty(clickedLayer, "visibility", "none");
+                this.className = "";
+              } else {
+                this.className = "active";
+                map.setLayoutProperty(clickedLayer, "visibility", "visible");
+              }
+            };
+            var layers = document.getElementById("menu8");
+            layers.appendChild(link);
+          }
+
+          // Une fois qu'on a chargé les données, on peut configurer l'intéractivité
+          //Interactivité HOVER
+
+          //Athlétisme
+          var popup5 = new mapboxgl.Popup({
+            closeButton: false,
+            closeOnClick: false,
+          });
+
+          map.on("mousemove", function (e) {
+            var features = map.queryRenderedFeatures(e.point, {
+              layers: ["Athlétisme"],
+            });
+            // Change the cursorstyle as a UI indicator.
+            map.getCanvas().style.cursor = features.length ? "pointer" : "";
+
+            if (!features.length) {
+              popup5.remove();
+              return;
+            }
+
+            var feature = features[0];
+            popup5
+              .setLngLat(feature.geometry.coordinates)
+              .setHTML(feature.properties.nom_usage)
+              .addTo(map);
+          });
+
+          //Tennis
+          var popup6 = new mapboxgl.Popup({
+            closeButton: false,
+            closeOnClick: false,
+          });
+
+          map.on("mousemove", function (e) {
+            var features = map.queryRenderedFeatures(e.point, {
+              layers: ["Tennis"],
+            });
+            // Change the cursorstyle as a UI indicator.
+            map.getCanvas().style.cursor = features.length ? "pointer" : "";
+
+            if (!features.length) {
+              popup6.remove();
+              return;
+            }
+
+            var feature = features[0];
+            popup6
+              .setLngLat(feature.geometry.coordinates)
+              .setHTML(feature.properties.ORGANOM)
+              .addTo(map);
+          });
+
+          //Piscines
+          var popup7 = new mapboxgl.Popup({
+            closeButton: false,
+            closeOnClick: false,
+          });
+
+          map.on("mousemove", function (e) {
+            var features = map.queryRenderedFeatures(e.point, {
+              layers: ["Piscines"],
+            });
+            // Change the cursorstyle as a UI indicator.
+            map.getCanvas().style.cursor = features.length ? "pointer" : "";
+
+            if (!features.length) {
+              popup7.remove();
+              return;
+            }
+
+            var feature = features[0];
+            popup7
+              .setLngLat(feature.geometry.coordinates)
+              .setHTML(feature.properties.nom_usage)
+              .addTo(map);
+          });
+
+          //Salles
+          var popup8 = new mapboxgl.Popup({
+            closeButton: false,
+            closeOnClick: false,
+          });
+
+          map.on("mousemove", function (e) {
+            var features = map.queryRenderedFeatures(e.point, {
+              layers: ["Salles de sport"],
+            });
+            // Change the cursorstyle as a UI indicator.
+            map.getCanvas().style.cursor = features.length ? "pointer" : "";
+
+            if (!features.length) {
+              popup8.remove();
+              return;
+            }
+
+            var feature = features[0];
+            popup8
+              .setLngLat(feature.geometry.coordinates)
+              .setHTML(feature.properties.nom)
+              .addTo(map);
+
+            //Running
+            var popup9 = new mapboxgl.Popup({
+              closeButton: false,
+              closeOnClick: false,
+            });
+
+            map.on("mousemove", function (e) {
+              var features = map.queryRenderedFeatures(e.point, {
+                layers: ["Running"],
+              });
+              // Change the cursorstyle as a UI indicator.
+              map.getCanvas().style.cursor = features.length ? "pointer" : "";
+
+              if (!features.length) {
+                popup9.remove();
+                return;
+              }
+
+              var feature = features[0];
+              popup9
+                .setLngLat(feature.geometry.coordinates)
+                .setHTML(feature.properties.name)
+                .addTo(map);
+            });
+          });
+
+          // arrêts de bus
+
+          var popup2 = new mapboxgl.Popup({
+            closeButton: false,
+            closeOnClick: false,
+          });
+
+          map.on("mousemove", function (e) {
+            var features = map.queryRenderedFeatures(e.point, {
+              layers: ["Arretc"],
+            });
+            // Change the cursorstyle as a UI indicator.
+            map.getCanvas().style.cursor = features.length ? "pointer" : "";
+
+            if (!features.length) {
+              popup2.remove();
+              return;
+            }
+
+            var feature = features[0];
+            popup2
+              .setLngLat(feature.geometry.coordinates)
+              .setHTML(feature.properties.nom)
+              .addTo(map);
+          });
+
+          // arrêts de metro A
+
+          var popup3 = new mapboxgl.Popup({
+            closeButton: false,
+            closeOnClick: false,
+          });
+
+          map.on("mousemove", function (e) {
+            var features = map.queryRenderedFeatures(e.point, {
+              layers: ["Stations de métro A"],
+            });
+            // Change the cursorstyle as a UI indicator.
+            map.getCanvas().style.cursor = features.length ? "pointer" : "";
+
+            if (!features.length) {
+              popup3.remove();
+              return;
+            }
+
+            var feature = features[0];
+            popup3
+              .setLngLat(feature.geometry.coordinates)
+              .setHTML(feature.properties.nom)
+              .addTo(map);
+          });
+
+          // arrêts de metro B
+
+          var popup4 = new mapboxgl.Popup({
+            closeButton: false,
+            closeOnClick: false,
+          });
+
+          map.on("mousemove", function (e) {
+            var features = map.queryRenderedFeatures(e.point, {
+              layers: ["Stations de métro B"],
+            });
+            // Change the cursorstyle as a UI indicator.
+            map.getCanvas().style.cursor = features.length ? "pointer" : "";
+
+            if (!features.length) {
+              popup4.remove();
+              return;
+            }
+
+            var feature = features[0];
+            popup4
+              .setLngLat(feature.geometry.coordinates)
+              .setHTML(feature.properties.nom)
+              .addTo(map);
+          });
+
+          //Interactivité CLICK
+          //popup assos, ça affiche toutes les assos mais aussi les arrets si on clique
+
+          //athlétisme
+          map.on("click", function (e) {
+            var featuresAth = map.queryRenderedFeatures(e.point, {
+              layers: ["Athlétisme"],
+            });
+            if (!featuresAth.length) {
+              return;
+            }
+            var featureAth = featuresAth[0];
+            var htmlContent =
+              "<div id ='pat-popup'><h3><b>" +
+              featureAth.properties.nom_usage +
+              "</b></h3><br>Adresse : " +
+              featureAth.properties.adresse_po +
+              " - " +
+              featureAth.properties.adresse__3 +
+              "</div>";
+            var popup = new mapboxgl.Popup()
+              .setLngLat(featureAth.geometry.coordinates)
+              .setHTML(htmlContent)
+              .addTo(map);
+          });
+
+          //tennis
+          map.on("click", function (e) {
+            var featuresTennis = map.queryRenderedFeatures(e.point, {
+              layers: ["Tennis"],
+            });
+            if (!featuresTennis.length) {
+              return;
+            }
+            var featureTennis = featuresTennis[0];
+            var htmlContent =
+              "<div id ='pat-popup'><h3><b>" +
+              featureTennis.properties.ORGANOM +
+              "</b></h3><br>Adresse : " +
+              featureTennis.properties.RIVOLIDE +
+              " - " +
+              featureTennis.properties.COMMNOM +
+              "</div>";
+            var popup = new mapboxgl.Popup()
+              .setLngLat(featureTennis.geometry.coordinates)
+              .setHTML(htmlContent)
+              .addTo(map);
+          });
+
+          //piscines
+          map.on("click", function (e) {
+            var featuresPisc = map.queryRenderedFeatures(e.point, {
+              layers: ["Piscines"],
+            });
+            if (!featuresPisc.length) {
+              return;
+            }
+            var featurePisc = featuresPisc[0];
+            var htmlContent =
+              "<div id ='pat-popup'><h3><b>" +
+              featurePisc.properties.nom_usage +
+              "</b></h3><br>Adresse : " +
+              featurePisc.properties.adresse_po +
+              " - " +
+              featurePisc.properties.commune +
+              "</div>";
+            var popup = new mapboxgl.Popup()
+              .setLngLat(featurePisc.geometry.coordinates)
+              .setHTML(htmlContent)
+              .addTo(map);
+          });
+
+          //salles
+          map.on("click", function (e) {
+            var featuresSalles = map.queryRenderedFeatures(e.point, {
+              layers: ["Salles de sport"],
+            });
+            if (!featuresSalles.length) {
+              return;
+            }
+            var featureSalles = featuresSalles[0];
+            var htmlContent =
+              "<div id ='pat-popup'><h3><b>" +
+              featureSalles.properties.nom +
+              "</b></h3><br>Adresse : " +
+              featureSalles.properties.adresse +
+              "<br>Site web : " +
+              featureSalles.properties.website +
+              "</div>";
+            var popup = new mapboxgl.Popup()
+              .setLngLat(featureSalles.geometry.coordinates)
+              .setHTML(htmlContent)
+              .addTo(map);
+          });
+
+          // Ajout boutons navigation a la fin du script
+
+          var nav = new mapboxgl.NavigationControl();
+          map.addControl(nav, "bottom-right");
+
+          // Ajout Echelle cartographique a la fin du script
+
+          map.addControl(
+            new mapboxgl.ScaleControl({
+              maxWidth: 120,
+              unit: "metric",
+            })
+          );
+
+          // Configuration onglets géographiques
+
+          document
+            .getElementById("Rennes")
+            .addEventListener("click", function () {
+              map.flyTo({
+                zoom: 13,
+                center: [-1.676374, 48.101287],
+                pitch: 60,
+                bearing: -1,
+              });
+            });
+          document
+            .getElementById("Centre")
+            .addEventListener("click", function () {
+              map.flyTo({
+                zoom: 14.5,
+                center: [-1.679258, 48.109684],
+                pitch: 60,
+                bearing: -260,
+              });
+            });
+
+          // Configuration onglets géographiques
+          document
+            .getElementById("St_Martin")
+            .addEventListener("click", function () {
+              map.flyTo({
+                zoom: 14,
+                center: [-1.674275, 48.131128],
+                pitch: 60,
+                bearing: -160,
+              });
+            });
+
+          // Configuration onglets géographiques
+          document
+            .getElementById("Beaulieu")
+            .addEventListener("click", function () {
+              map.flyTo({
+                zoom: 14,
+                center: [-1.627588, 48.127968],
+                pitch: 60,
+                bearing: -110,
+              });
+            });
+
+          // Configuration onglets géographiques #rennes2
+          document
+            .getElementById("Poterie")
+            .addEventListener("click", function () {
+              map.flyTo({
+                zoom: 14,
+                center: [-1.639631, 48.095519],
+                pitch: 60,
+                bearing: -60,
+              });
+            });
+
+          // Configuration onglets géographiques
+          document
+            .getElementById("Sud_Gare")
+            .addEventListener("click", function () {
+              map.flyTo({
+                zoom: 14,
+                center: [-1.684779, 48.086983],
+                pitch: 60,
+                bearing: 50,
+              });
+            });
+
+          document
+            .getElementById("Cleunay")
+            .addEventListener("click", function () {
+              map.flyTo({
+                zoom: 14,
+                center: [-1.708014, 48.103902],
+                pitch: 60,
+                bearing: 80,
+              });
+            });
+
+          document
+            .getElementById("Villejean")
+            .addEventListener("click", function () {
+              map.flyTo({
+                zoom: 14,
+                center: [-1.696532, 48.128901],
+                pitch: 60,
+                bearing: 210,
+              });
+            });
+
+          // Configuration onglets géographiques #rennes2
+          document
+            .getElementById("Vuegenerale")
+            .addEventListener("click", function () {
+              map.flyTo({
+                zoom: 13,
+                center: [-1.67075, 48.109625],
+                pitch: 75,
+                bearing: -1,
+              });
+            });
+        </script>
+      </section>
+    </div>
+
+    <!-- Footer -->
+
+    <h2>Les catégories sportives</h2>
+
+    <!--
+                <footer id="footer">
+					
+                        <section>
+							<p>Multi-sports : Foot &bull; Basket &bull; Handball &bull; Pilates &bull; et plein d'autres!</p>
+                            <p>Arts martiaux : Capoeria &bull; Taï-chi &bull; Taekwondo &bull; Karate &bull; et etc</p>
+                            <p>Nature & Eau : </p>
+                          
+						</section>
+						
+                	   <section>
+						  <p>Fitness : </p>
+                            <p>Corp & Esprit : </p>
+                            <p>Jeux d'adresse : </p>
+                        </section>
+                <p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+                        	</footer>
+-->
+
+    <!--			</div>-->
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <!--[if lte IE 8
+      ]><script src="assets/js/ie/respond.min.js"></script
+    ><![endif]-->
+    <script src="assets/js/main.js"></script>
+
+    <!-- Fin de la copie du script du TD Mapbox 
+        avec Boris - 2eme partie -->
+  </body>
+</html>

@@ -1,0 +1,1182 @@
+<!DOCTYPE HTML>
+<!--
+	Stellar by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+ASSOCIATIONS SPORTIVES
+-->
+<html>
+	<head>
+		<title>Carte des Associations sportives</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        
+  
+<!-- Appel API mapbox -->
+        
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
+
+<style>
+
+#map {
+    width: 90%;
+    height:620px;
+    margin-right: auto;
+    margin-left: auto;
+    border-width:0px;
+    border-style:solid;
+    border-color:#35c2bd;}
+        
+#menu {
+	width: 16%; margin-right: auto; margin-left: auto; 
+	Z-index: 1; top: 80px; right: 8px; position: absolute;
+	border-color: #FFFFFF; background-color: #6b7581;
+	font-size: 12px; font-family: 'Quicksand', Arial, Helvetica, sans-serif; 
+    border: 3px solid #51555c;
+    border-radius: 5px;}
+
+#menu a {
+	display: block; color: #FFFFFF; padding: 8px 16px;
+	text-align: center;  font-weight: bold;text-decoration :none;
+	border-style: solid; border-color: #000000;}
+	
+#menu a.active { background-color:  #35c2bd;
+	color: #FFFFFF;}
+	
+#menu a:hover:not(.active) {
+	background-color:  #ffffff;
+	color: #000000;}
+    
+#menu1 {
+	width: 7%; margin-right: auto; margin-left: auto; 
+	Z-index: 1; top: 80px; left: 8px; position: absolute;
+	border-color: #FFFFFF; background-color: #95c11e;
+	font-size: 12px; font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+    text-decoration :none;
+    border-radius: 5px;}
+
+#menu1 a {
+	display: block; color: #FFFFFF; padding: 8px 16px;
+	text-align: center;  font-weight: bold;
+	border-style: solid; border-color: #000000;
+    text-decoration :none;
+    border-radius: 5px;}
+	
+#menu1 a.active { background-color:  #35c2bd;
+	color: #FFFFFF;
+    text-decoration :none;
+    border-radius: 5px;}
+	
+#menu1 a:hover:not(.active) {
+	background-color:  #ffffff;
+	color: #000000;
+    text-decoration :none;
+    border-radius: 5px;}
+
+
+#menu2 {
+	width: 7%; margin-right: auto; margin-left: auto; 
+	Z-index: 1; top: 122px; left: 8px; position: absolute;
+	border-color: #FFFFFF; background-color: #008bd2;
+	font-size: 12px; font-family: 'Quicksand', Arial, Helvetica, sans-serif; 
+    text-decoration :none;
+    border-radius: 5px;}
+
+#menu2 a {
+	display: block; color: #FFFFFF; padding: 8px 16px;
+	text-align: center;  font-weight: bold;
+	border-style: solid; border-color: #000000;
+    text-decoration :none;
+    border-radius: 5px;}
+	
+#menu2 a.active { background-color:  #35c2bd;
+    text-decoration :none;
+	color: #FFFFFF;border-radius: 5px;}
+	
+#menu2 a:hover:not(.active) {
+	background-color:  #ffffff;
+    text-decoration :none;
+	color: #000000;border-radius: 5px;}
+
+#menu3 {
+	width: 7%; margin-right: auto; margin-left: auto; 
+	Z-index: 1; top: 164px; left: 8px; position: absolute;
+	border-color: #FFFFFF; background-color: #00893e;
+	font-size: 12px; font-family: 'Quicksand', Arial, Helvetica, sans-serif; 
+    text-decoration :none;
+    border-radius: 5px;}
+
+#menu3 a {
+	display: block; color: #FFFFFF; padding: 8px 16px;
+	text-align: center;  font-weight: bold;
+	border-style: solid; border-color: #000000;
+    text-decoration :none;
+    border-radius: 5px;}
+	
+#menu3 a.active { background-color:  #35c2bd;
+	color: #FFFFFF;
+    text-decoration :none;
+    border-radius: 5px;}
+	
+#menu3 a:hover:not(.active) {
+	background-color:  #ffffff;
+	color: #000000;
+    text-decoration :none;
+    border-radius: 5px;}
+
+#menu4 {
+	width: 7%; margin-right: auto; margin-left: auto; 
+	Z-index: 1; top: 206px; left: 8px; position: absolute;
+	border-color: #FFFFFF; background-color: #6f2282;
+    text-decoration :none;
+	font-size: 12px; font-family: 'Quicksand', Arial, Helvetica, sans-serif;border-radius: 5px;}
+
+#menu4 a {
+	display: block; color: #FFFFFF; padding: 8px 16px;
+	text-align: center;  font-weight: bold;
+	border-style: solid; border-color: #000000;
+    text-decoration :none;
+    border-radius: 5px;}
+	
+#menu4 a.active { background-color:  #35c2bd;
+	color: #FFFFFF;
+    text-decoration :none;
+    border-radius: 5px;}
+	
+#menu4 a:hover:not(.active) {
+	background-color:  #ffffff;
+	color: #000000;
+    text-decoration :none;
+    border-radius: 5px;}
+
+#menu5 {
+	width: 7%; margin-right: auto; margin-left: auto; 
+	Z-index: 1; top: 248px; left: 8px; position: absolute;
+	border-color: #FFFFFF; background-color: #f39200;
+	font-size: 12px; font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+    text-decoration :none;
+    border-radius: 5px;}
+
+#menu5 a {
+	display: block; color: #FFFFFF; padding: 8px 16px;
+	text-align: center;  font-weight: bold;
+	border-style: solid; border-color: #000000;
+    text-decoration :none;
+    border-radius: 5px;}
+	
+#menu5 a.active { background-color:  #35c2bd;
+	color: #FFFFFF;
+    text-decoration :none;
+    border-radius: 5px;}
+	
+#menu5 a:hover:not(.active) {
+	background-color:  #ffffff;
+	color: #000000;
+    text-decoration :none;
+    border-radius: 5px;}
+
+#menu6 {
+	width: 7%; margin-right: auto; margin-left: auto; 
+	Z-index: 1; top: 290px; left: 8px; position: absolute;
+	border-color: #FFFFFF; background-color: #61c3d9;
+	font-size: 12px; font-family: 'Quicksand', Arial, Helvetica, sans-serif; 
+    text-decoration :none;
+    border-radius: 5px;}
+
+#menu6 a {
+	display: block; color: #FFFFFF; padding: 8px 16px;
+	text-align: center;  font-weight: bold;
+	border-style: solid; border-color: #000000;
+    text-decoration :none;
+    border-radius: 5px;}
+	
+#menu6 a.active { background-color:  #35c2bd;
+	color: #FFFFFF;
+    text-decoration :none;
+    border-radius: 5px;}
+	
+#menu6 a:hover:not(.active) {
+	background-color:  #ffffff;
+	color: #000000;
+    text-decoration :none;
+    border-radius: 5px;}
+    
+#menu7 {
+	width: 7%; margin-right: auto; margin-left: auto; 
+	Z-index: 1; top: 332px; left: 8px; position: absolute;
+	border-color: #FFFFFF; background-color: #ee1d23;
+	font-size: 12px; font-family: 'Quicksand', Arial, Helvetica, sans-serif; 
+    text-decoration :none;
+    border-radius: 5px;}
+
+#menu7 a {
+	display: block; color: #FFFFFF; padding: 8px 16px;
+	text-align: center;  font-weight: bold;
+	border-style: solid; border-color: #000000;
+    text-decoration :none;
+    border-radius: 5px}
+	
+#menu7 a.active { background-color:  #35c2bd;
+	color: #FFFFFF;
+    text-decoration :none;
+    border-radius: 5px;}
+	
+#menu7 a:hover:not(.active) {
+	background-color:  #ffffff;
+	color: #000000;
+    text-decoration :none;
+    border-radius: 5px;}
+
+#menu8 {
+	width: 7%; margin-right: auto; margin-left: auto; 
+	Z-index: 1; top: 375px; left: 8px; position: absolute;
+	border-color: #FFFFFF; background-color: #2b4794;
+	font-size: 12px; font-family: 'Quicksand', Arial, Helvetica, sans-serif; 
+    text-decoration :none;
+    border-radius: 5px}
+
+#menu8 a {
+	display: block; color: #FFFFFF; padding: 8px 16px;
+	text-align: center;  font-weight: bold;
+	border-style: solid; border-color: #000000;
+    text-decoration :none;
+    border-radius: 5px}
+	
+#menu8 a.active { background-color:  #35c2bd;
+	color: #FFFFFF;
+    text-decoration :none;
+    border-radius: 5px;}
+	
+#menu8 a:hover:not(.active) {
+	background-color:  #ffffff;
+	color: #000000;
+    text-decoration :none;
+    border-radius: 5px}
+    
+#menu9 {
+	width: 7%; margin-right: auto; margin-left: auto; 
+	Z-index: 1; top: 420px; left: 8px; position: absolute;
+	border-color: #FFFFFF; background-color: #f5f60d;
+	font-size: 12px; font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif; border-radius: 5px;}
+
+#menu9 a {
+	display: block; color: #FFFFFF; padding: 8px 1px;
+	text-align: center;  font-weight: bold;
+	border-style: solid; border-color: #000000;text-decoration :none;
+    border-radius: 5px}
+	
+#menu9 a.active { background-color:  #35c2bd;
+	color: #FFFFFF;
+    border-radius: 5px}
+	
+#menu9 a:hover:not(.active) {
+	background-color:  #ffffff;
+	color: #000000;
+    border-radius: 5px}
+    
+.mapboxgl-popup-content {
+            color: #ffffff;
+    background-color: #474744;
+    border-color: #2b4794;
+    max-width: 300px;
+    box-shadow: 3px 3px 3px #35c2bd;
+    font-family: 'Quicksand';
+        }  
+
+
+</style>
+
+<!--Les objets -->
+        
+   
+</head>
+    <body>
+
+		<!-- Wrapper -->
+			<div id="header-wrapper">
+                
+					<div id="header">
+                        
+					
+
+						<!-- Nav -->
+							<nav id="nav">
+								<ul>
+									<li><a href="index.html">Accueil</a></li>
+									
+									<li> <a href="script_assos.html">Associations sportives</a></li>
+									<li><a href="sports_indiv.html">Sports individuels</a></li>
+									<li class= "current"><a href="sports_collec.html">Sports collectifs</a></li>
+								</ul>
+							</nav>
+
+					</div>
+				</div>
+
+        <!-- Main -->
+			<div id="main">
+                <!-- Carte -->
+                <section id="content" class="map">
+                    
+                    <!--Onglets géographiques-->
+								
+ 			<div id='map'>
+                <div>
+                <button id='Atalante Champeaux'>Atalante Champeaux</button>
+                <button id='La Poterie'>La Poterie</button>
+                <button id='Centre'>Centre</button>
+                <button id='Beaulieu'>Beaulieu</button>
+                <button id='Bréquigny'>Bréquigny</button>
+                <button id='Vuegenerale'>Vue générale</button>
+                </div><div id="menu"></div> <div id="menu1"></div> <div id="menu2"></div> <div id="menu2"></div><div id="menu3"></div><div id="menu4"></div><div id="menu5"></div><div id="menu6"></div><div id="menu7"></div><div id="menu8"></div><div id="menu9"></div></div>
+                    
+            
+                    
+                    <!--Les scripts-->
+
+                                <script>
+                                // AccesToken
+                                mapboxgl.accessToken = 'pk.eyJ1IjoiY2hha2F4IiwiYSI6ImNqN2x5YmVrYTJsdGozMHBmN3BrYWNqd2YifQ.mExpTHeFBpnaQHQsBiLyjw';
+                                // Configuration de la carte
+                                var map = new mapboxgl.Map({
+                                container: 'map',
+                                style: 'mapbox://styles/chakax/cj8iybtlt3kbq2spbggrvtkqe', // Fond de carte
+                                center: [-1.670750, 48.109625], // lat/long
+                                zoom: 13, // zoom
+                                pitch: 75, // Rotation
+                                bearing: -1 // Inclinaison
+                                });
+                
+
+                                // Ajout de couches OSM
+                                map.on('load', function () {
+                                    //Appel de la source de données
+                                    map.addSource('mapbox-streets-v7', {
+                                        type: 'vector',
+                                        url: 'mapbox://mapbox.mapbox-streets-v7'});
+                                    // Ajout de la couche routes
+                                    map.addLayer({
+                                        "id": "routes", // nom que l'on choisit pour la couche
+                                        "type": "line", // dans mapbox, 4 types qui déterminent la forme (symbol, circle, fill (polygone), line)
+                                        "source": "mapbox-streets-v7", // on reprend le nom de la source déterminé dans map.addsource
+                                        "layout": {'visibility': 'none'},
+                                        "source-layer": "road", // nom de la couche dans mapbox
+                                        //"filter": ['==', 'class', 'trunk'], // ligne de code pour afficher seulement les routes de type 'trunk'
+                                        "filter": ["all",  ["in", "class", "motorway", "trunk", "primary"]], // pour afficher une sélection de plusieurs types de routes
+                                        "paint": {"line-color": "#B22222", "line-width": 2}
+                                    
+                                    });
+                                    
+                                  
+                                    
+                                    //Arrêts de bus - visible
+                                
+                                    map.addSource('Arretc', {
+                                        type: 'vector',
+                                        url: 'mapbox://tamalji.5a7mst11'});
+                                    map.addLayer({
+                                        'id': 'Arretc',
+                                        'type': 'circle',
+                                        'source': 'Arretc',
+                                        'source-layer': 'arretC-7uvgdq',
+                                        'layout': {'visibility': 'none'},
+                                        'paint': {'circle-radius': 5, 'circle-color': '#f5f60d',}
+                                    });
+                                    
+
+                                    // Ajout de données uploadées dans les tilesets de mapbox
+                                   
+                                    // avec icone url
+                                map.addSource('Football', {
+                                    type: 'vector',
+                                    url: 'mapbox://chakax.76a20wb5'});
+                                map.loadImage(
+                                'https://cdn1.iconfinder.com/data/icons/education-colored-icons-vol-3/128/141-128.png',
+                                    function (error,image){
+                                        if (error) throw error;
+                                        map.addImage('Football',image);
+                                        map.addLayer({
+                                            'id': 'Football',
+                                            'type': 'symbol',
+                                            'source': 'Football',
+                                            'source-layer': 'FooT-23hp4h',
+                                            'layout': {
+                                                'visibility': 'none', 
+                                                'icon-image':'Football',
+                                                'icon-size': 0.15
+                                            }
+                                    
+                                        });
+                                    }
+                                );
+                                    
+                                      //Terrain de Rugby avec icone local
+                                    map.addSource('Rugby', {
+                                        type: 'vector',
+                                        url: 'mapbox://chakax.634gwrpq'});
+                                    map.loadImage(
+                                    'https://cdn0.iconfinder.com/data/icons/sports-ball-2/64/ICFball3-128.png',
+                                        function (error,image){
+                                            if (error) throw error;
+                                            map.addImage('Rugby',image);
+                                            map.addLayer({
+                                                'id': 'Rugby',
+                                                'type': 'symbol',
+                                                'source': 'Rugby',
+                                                'source-layer': 'RugbY-58m4um',
+                                                'layout': {
+                                                    'visibility': 'none', 
+                                                    'icon-image':'Rugby',
+                                                    'icon-size': 0.15 
+                                            }
+                                    
+                                        });
+                                    }
+                                );
+                                    
+                       
+                                    
+                                      //Terrain de Basket avec icone url
+                                    map.addSource('Basket', {
+                                        type: 'vector',
+                                        url: 'mapbox://chakax.4ssspv1r'});
+                                    map.loadImage(
+                                    'https://cdn0.iconfinder.com/data/icons/sports-icons-rounded/110/Basketball-128.png',
+                                        function (error,image){
+                                            if (error) throw error;
+                                            map.addImage('Basket',image);
+                                    map.addLayer({
+                                        'id': 'Basket',
+                                        'type': 'symbol',
+                                        'source': 'Basket',
+                                        'source-layer': 'Basket-co7lr5',
+                                        'layout': {
+                                            'visibility': 'none', 
+                                            'icon-image':'Basket',
+                                             'icon-size': 0.15 
+                                         }
+                                    
+                                    });
+                                 }
+                            );
+                                    
+                                   
+                                    
+                                    
+                                      //Gymnases avec icone url
+                                    map.addSource('Gymnases', {
+                                        type: 'vector',
+                                        url: 'mapbox://chakax.85iqqens'});
+                                    map.loadImage(
+                                    'https://cdn2.iconfinder.com/data/icons/sports-and-games-vol-01-3/32/cricket-ground-stadium-pitch-128.png',
+                                        function (error,image){
+                                            if (error) throw error;
+                                            map.addImage('Gymnases',image);
+                                    map.addLayer({
+                                        'id': 'Gymnases',
+                                        'type': 'symbol',
+                                        'source': 'Gymnases',
+                                        'source-layer': 'gymnases_multisport_rennes-38fbne',
+                                        'layout': {
+                                                'visibility': 'none', 
+                                                 'icon-image':'Gymnases',
+                                                 'icon-size': 0.15 
+                                            }
+                                    
+                                        });
+                                    }
+                                );
+                                                                                           
+                                
+                                      //lignec1
+                                    map.addSource('Lignec1', {
+                                        type: 'vector',
+                                        url: 'mapbox://tamalji.dj4641oy'
+                                    });
+                                    map.addLayer({
+                                        'id': 'C1',
+                                        'type': 'line',
+                                        'source': 'Lignec1',
+                                        'source-layer': 'lignec1-cpzbsi',
+                                        'layout': {'visibility': 'none'},
+                                        'paint': {'line-width': 3, 'line-color': '#95c11e',}
+                                    }); 
+                                  //lignec2
+                                    map.addSource('Lignec2', {
+                                        type: 'vector',
+                                        url: 'mapbox://tamalji.9t2yk6ua'
+                                    });
+                                    map.addLayer({
+                                        'id': 'C2',
+                                        'type': 'line',
+                                        'source': 'Lignec2',
+                                        'source-layer': 'lignec2-ciqs6q',
+                                        'layout': {'visibility': 'none'},
+                                        'paint': {'line-width': 3, 'line-color': '#008bd2',}
+                                    }); 
+                                
+                                    //lignec3
+                                    map.addSource('Lignec3', {
+                                        type: 'vector',
+                                        url: 'mapbox://tamalji.dovv46za'
+                                    });
+                                    map.addLayer({
+                                        'id': 'C3',
+                                        'type': 'line',
+                                        'source': 'Lignec3',
+                                        'source-layer': 'lignec3-9w4jku',
+                                        'layout': {'visibility': 'none'},
+                                        'paint': {'line-width': 3, 'line-color': '#00893e',}
+                                    }); 
+                                  //lignec4
+                                    map.addSource('Lignec4', {
+                                        type: 'vector',
+                                        url: 'mapbox://tamalji.1orc7wv1'
+                                    });
+                                    map.addLayer({
+                                        'id': 'C4',
+                                        'type': 'line',
+                                        'source': 'Lignec4',
+                                        'source-layer': 'lignec4-a2peic',
+                                        'layout': {'visibility': 'none'},
+                                       'paint': {'line-width': 3, 'line-color': '#6f2282',}
+                                    }); 
+                                  //ligne c5
+                                    map.addSource('Lignec5', {
+                                        type: 'vector',
+                                        url: 'mapbox://tamalji.92lj520n'
+                                    });
+                                    map.addLayer({
+                                        'id': 'C5',
+                                        'type': 'line',
+                                        'source': 'Lignec5',
+                                        'source-layer': 'lignec5-a0u9xz',
+                                        'layout': {'visibility': 'none'},
+                                        'paint': {'line-width': 3, 'line-color': '#f39200',}
+                                    }); 
+                                
+                                      //lignec6
+                                    map.addSource('Lignec6', {
+                                        type: 'vector',
+                                        url: 'mapbox://tamalji.ao4egnko'
+                                    });
+                                    map.addLayer({
+                                        'id': 'C6',
+                                        'type': 'line',
+                                        'source': 'Lignec6',
+                                        'source-layer': 'lignec6-4701k6',
+                                        'layout': {'visibility': 'none'},
+                                        'paint': {'line-width': 3, 'line-color': '#61c3d9',}
+                                    }); 
+                                
+                                            //ligne metro a
+                                    map.addSource('LigneMa', {
+                                        type: 'vector',
+                                        url: 'mapbox://tamalji.902u9gqh'
+                                    });
+                                    map.addLayer({
+                                        'id': 'Métro A',
+                                        'type': 'line',
+                                        'source': 'LigneMa',
+                                        'source-layer': 'ligneMa-a6kwhl',
+                                        'layout': {'visibility': 'none'},
+                                        'paint': {'line-width': 3, 'line-color': '#ee1d23',}
+                                    }); 
+                                
+                                      //ligne metro b
+                                    map.addSource('LigneMb', {
+                                        type: 'vector',
+                                        url: 'mapbox://tamalji.5a0h1nwb'
+                                    });
+                                    map.addLayer({
+                                        'id': 'Métro B',
+                                        'type': 'line',
+                                        'source': 'LigneMb',
+                                        'source-layer': 'ligneMb-agzwrh',
+                                        'layout': {'visibility': 'none'},
+                                        'paint': {'line-width': 3, 'line-color': '#2b4794',}
+                                    }); 
+                                  
+                                    
+                                    //Contour métro A
+                                    map.addSource('ContourA', {
+                                        type: 'vector',
+                                        url: 'mapbox://tamalji.8rs5r6v1'
+                                    });
+                                    map.addLayer({
+                                        'id': 'Contour A',
+                                        'type': 'circle',
+                                        'source': 'ContourA',
+                                        'source-layer': 'arretmetroa-b9ya00',
+                                        'layout': {'visibility': 'visible'},
+                                        'paint': {'circle-radius': 5, 'circle-color': '#ee1d23',}
+                                    }); 
+                                    
+                                          //Stations de métro a
+                                    map.addSource('Metroa', {
+                                        type: 'vector',
+                                        url: 'mapbox://tamalji.8rs5r6v1'
+                                    });
+                                    map.addLayer({
+                                        'id': 'Stations de métro A',
+                                        'type': 'circle',
+                                        'source': 'Metroa',
+                                        'source-layer': 'arretmetroa-b9ya00',
+                                        'layout': {'visibility': 'visible'},
+                                        'paint': {'circle-radius': 3, 'circle-color': '#ffffff',}
+                                    }); 
+                                        
+                                    
+                                    //Contour métro B
+                                    map.addSource('ContourB', {
+                                        type: 'vector',
+                                        url: 'mapbox://tamalji.4vrmhz7m'
+                                    });
+                                    map.addLayer({
+                                        'id': 'Countour B',
+                                        'type': 'circle',
+                                        'source': 'ContourB',
+                                        'source-layer': 'arretmetrob-5gbdqk',
+                                        'layout': {'visibility': 'visible'},
+                                        'paint': {'circle-radius': 5, 'circle-color': '#2b4794',}
+                                    }); 
+                                    
+                                    //Stations de métro b
+                                    map.addSource('Metrob', {
+                                        type: 'vector',
+                                        url: 'mapbox://tamalji.4vrmhz7m'
+                                    });
+                                    map.addLayer({
+                                        'id': 'Stations de métro B',
+                                        'type': 'circle',
+                                        'source': 'Metrob',
+                                        'source-layer': 'arretmetrob-5gbdqk',
+                                        'layout': {'visibility': 'visible'},
+                                        'paint': {'circle-radius': 3, 'circle-color': '#ffffff',}
+                                    }); 
+                                });
+
+
+                                // Configuration du menu
+                                var toggleableLayerIds = ['Football', 'Basket', 'Rugby', 'Gymnases'];
+
+                                for (var i = 0; i < toggleableLayerIds.length; i++) {var id = toggleableLayerIds[i];
+                                    var link = document.createElement('a');
+                                    link.href = '#';
+                                    link.className = 'inactive';
+                                    link.textContent = id;
+
+                                    link.onclick = function (e) {var clickedLayer = this.textContent;
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+                                        if (visibility === 'visible') {
+                                            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                                            this.className = '';} else {this.className = 'active';
+                                            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');} };
+                                var layers = document.getElementById('menu');  layers.appendChild(link); }
+
+                                    // 1 menu par bus pour pouvoir changer les couleurs dans le menu
+                                    
+                                var toggleableLayerIds = ['C1'];
+
+                                for (var i = 0; i < toggleableLayerIds.length; i++) {var id = toggleableLayerIds[i];
+                                    var link = document.createElement('a');
+                                    link.href = '#';
+                                    link.className = 'inactive';
+                                    link.textContent = id;
+
+                                    link.onclick = function (e) {var clickedLayer = this.textContent;
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+                                        if (visibility === 'visible') {
+                                            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                                            this.className = '';} else {this.className = 'active';
+                                            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');} };
+                                var layers = document.getElementById('menu1');  layers.appendChild(link); }
+                                 
+                                var toggleableLayerIds = ['C2'];
+
+                                for (var i = 0; i < toggleableLayerIds.length; i++) {var id = toggleableLayerIds[i];
+                                    var link = document.createElement('a');
+                                    link.href = '#';
+                                    link.className = 'inactive';
+                                    link.textContent = id;
+
+                                    link.onclick = function (e) {var clickedLayer = this.textContent;
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+                                        if (visibility === 'visible') {
+                                            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                                            this.className = '';} else {this.className = 'active';
+                                            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');} };
+                                var layers = document.getElementById('menu2');  layers.appendChild(link); }
+                                    
+                                 var toggleableLayerIds = ['C3'];
+
+                                for (var i = 0; i < toggleableLayerIds.length; i++) {var id = toggleableLayerIds[i];
+                                    var link = document.createElement('a');
+                                    link.href = '#';
+                                    link.className = 'inactive';
+                                    link.textContent = id;
+
+                                    link.onclick = function (e) {var clickedLayer = this.textContent;
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+                                        if (visibility === 'visible') {
+                                            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                                            this.className = '';} else {this.className = 'active';
+                                            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');} };
+                                var layers = document.getElementById('menu3');  layers.appendChild(link); }
+                                
+                                     var toggleableLayerIds = ['C4'];
+
+                                for (var i = 0; i < toggleableLayerIds.length; i++) {var id = toggleableLayerIds[i];
+                                    var link = document.createElement('a');
+                                    link.href = '#';
+                                    link.className = 'inactive';
+                                    link.textContent = id;
+
+                                    link.onclick = function (e) {var clickedLayer = this.textContent;
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+                                        if (visibility === 'visible') {
+                                            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                                            this.className = '';} else {this.className = 'active';
+                                            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');} };
+                                var layers = document.getElementById('menu4');  layers.appendChild(link); }
+                                
+                                     var toggleableLayerIds = ['C5'];
+
+                                for (var i = 0; i < toggleableLayerIds.length; i++) {var id = toggleableLayerIds[i];
+                                    var link = document.createElement('a');
+                                    link.href = '#';
+                                    link.className = 'inactive';
+                                    link.textContent = id;
+
+                                    link.onclick = function (e) {var clickedLayer = this.textContent;
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+                                        if (visibility === 'visible') {
+                                            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                                            this.className = '';} else {this.className = 'active';
+                                            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');} };
+                                var layers = document.getElementById('menu5');  layers.appendChild(link); }
+                                    
+                                 var toggleableLayerIds = ['C6'];
+
+                                for (var i = 0; i < toggleableLayerIds.length; i++) {var id = toggleableLayerIds[i];
+                                    var link = document.createElement('a');
+                                    link.href = '#';
+                                    link.className = 'inactive';
+                                    link.textContent = id;
+
+                                    link.onclick = function (e) {var clickedLayer = this.textContent;
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+                                        if (visibility === 'visible') {
+                                            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                                            this.className = '';} else {this.className = 'active';
+                                            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');} };
+                                var layers = document.getElementById('menu6');  layers.appendChild(link); }
+                                    
+                                    
+                                 var toggleableLayerIds = ['Métro A'];
+
+                                for (var i = 0; i < toggleableLayerIds.length; i++) {var id = toggleableLayerIds[i];
+                                    var link = document.createElement('a');
+                                    link.href = '#';
+                                    link.className = 'inactive';
+                                    link.textContent = id;
+
+                                    link.onclick = function (e) {var clickedLayer = this.textContent;
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+                                        if (visibility === 'visible') {
+                                            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                                            this.className = '';} else {this.className = 'active';
+                                            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');} };
+                                var layers = document.getElementById('menu7');  layers.appendChild(link); }
+                                    
+                                     var toggleableLayerIds = ['Métro B'];
+
+                                for (var i = 0; i < toggleableLayerIds.length; i++) {var id = toggleableLayerIds[i];
+                                    var link = document.createElement('a');
+                                    link.href = '#';
+                                    link.className = 'inactive';
+                                    link.textContent = id;
+
+                                    link.onclick = function (e) {var clickedLayer = this.textContent;
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+                                        if (visibility === 'visible') {
+                                            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                                            this.className = '';} else {this.className = 'active';
+                                            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');} };
+                                var layers = document.getElementById('menu8');  layers.appendChild(link); }
+                                    
+                                         var toggleableLayerIds = ['Arretc'];
+
+                                for (var i = 0; i < toggleableLayerIds.length; i++) {var id = toggleableLayerIds[i];
+                                    var link = document.createElement('a');
+                                    link.href = '#';
+                                    link.className = 'inactive';
+                                    link.textContent = id;
+
+                                    link.onclick = function (e) {var clickedLayer = this.textContent;
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+                                        if (visibility === 'visible') {
+                                            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                                            this.className = '';} else {this.className = 'active';
+                                            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');} };
+                                var layers = document.getElementById('menu9');  layers.appendChild(link); }
+                                    
+                                    
+                                
+                                
+                            // Une fois qu'on a chargé les données, on peut configurer l'intéractivité
+                                 //Interactivité HOVER              
+                                
+                                 //Football   
+                                var popup= new mapboxgl.Popup({
+                                    closeButton: false,
+                                    closeOnClick: false });
+                                
+                                map.on('mousemove', function(e) {
+                                    var features= map.queryRenderedFeatures(e.point, { layers: ['Football'] });
+                                // Change the cursorstyle as a UI indicator.
+                                map.getCanvas().style.cursor= (features.length) ? 'pointer' : '';
+
+                                if (!features.length) {
+                                    popup.remove();
+                                    return; }
+                                    
+                                var feature= features[0];
+                                        popup.setLngLat(feature.geometry.coordinates)
+                                        .setHTML(feature.properties.organom)
+                                        .addTo(map);
+                               
+                    
+                                });
+                                
+                                    //Rugby
+                                var popup5= new mapboxgl.Popup({
+                                    closeButton: false,
+                                    closeOnClick: false });
+                                    
+                                
+                                map.on('mousemove', function(e) {
+                                    var features= map.queryRenderedFeatures(e.point, { layers: ['Rugby'] });
+                                // Change the cursorstyle as a UI indicator.
+                                map.getCanvas().style.cursor= (features.length) ? 'pointer' : '';
+
+                                if (!features.length) {
+                                    popup5.remove();
+                                    return; }
+                                    
+                                var feature= features[0];
+                                        popup5.setLngLat(feature.geometry.coordinates)
+                                        .setHTML(feature.properties.organom)
+                                        .addTo(map);
+                               
+                    
+                                });
+                                       //Basket
+                                var popup6= new mapboxgl.Popup({
+                                    closeButton: false,
+                                    closeOnClick: false });
+                                
+                                map.on('mousemove', function(e) {
+                                    var features= map.queryRenderedFeatures(e.point, { layers: ['Basket'] });
+                                // Change the cursorstyle as a UI indicator.
+                                map.getCanvas().style.cursor= (features.length) ? 'pointer' : '';
+
+                                if (!features.length) {
+                                    popup6.remove();
+                                    return; }
+                                    
+                                var feature= features[0];
+                                        popup6.setLngLat(feature.geometry.coordinates)
+                                        .setHTML(feature.properties.organom)
+                                        .addTo(map);
+                               
+                    
+                                });
+                                    
+                                      //Gymnases
+                                var popup7= new mapboxgl.Popup({
+                                    closeButton: false,
+                                    closeOnClick: false });
+                                
+                                map.on('mousemove', function(e) {
+                                    var features= map.queryRenderedFeatures(e.point, { layers: ['Gymnases'] });
+                                // Change the cursorstyle as a UI indicator.
+                                map.getCanvas().style.cursor= (features.length) ? 'pointer' : '';
+
+                                if (!features.length) {
+                                    popup7.remove();
+                                    return; }
+                                    
+                                var feature= features[0];
+                                        popup7.setLngLat(feature.geometry.coordinates)
+                                        .setHTML(feature.properties.nom_site_p)
+                                        .addTo(map);
+                               
+                    
+                                
+                    
+                                });
+                                    
+                                    // arrêts de bus 
+                               
+                                var popup2= new mapboxgl.Popup({
+                                    closeButton: false,
+                                    closeOnClick: false });
+                                
+                                map.on('mousemove', function(e) {
+                                    var features= map.queryRenderedFeatures(e.point, { layers: ['Arret de bus'] });
+                                // Change the cursorstyle as a UI indicator.
+                                map.getCanvas().style.cursor= (features.length) ? 'pointer' : '';
+
+                                if (!features.length) {
+                                    popup2.remove();
+                                    return; }
+                                    
+                                var feature= features[0];
+                                        popup2.setLngLat(feature.geometry.coordinates)
+                                        .setHTML(feature.properties.nom)
+                                        .addTo(map);
+                               
+                    
+                                });
+                             
+                                        // arrêts de metro A 
+                               
+                                var popup3= new mapboxgl.Popup({
+                                    closeButton: false,
+                                    closeOnClick: false });
+                                
+                                map.on('mousemove', function(e) {
+                                    var features= map.queryRenderedFeatures(e.point, { layers: ['Stations de métro A'] });
+                                // Change the cursorstyle as a UI indicator.
+                                map.getCanvas().style.cursor= (features.length) ? 'pointer' : '';
+
+                                if (!features.length) {
+                                    popup3.remove();
+                                    return; }
+                                    
+                                var feature= features[0];
+                                        popup3.setLngLat(feature.geometry.coordinates)
+                                        .setHTML(feature.properties.nom)
+                                        .addTo(map);
+                               
+                    
+                                });
+                             
+                                       // arrêts de metro B 
+                               
+                                var popup4= new mapboxgl.Popup({
+                                    closeButton: false,
+                                    closeOnClick: false });
+                                
+                                map.on('mousemove', function(e) {
+                                    var features= map.queryRenderedFeatures(e.point, { layers: ['Stations de métro B'] });
+                                // Change the cursorstyle as a UI indicator.
+                                map.getCanvas().style.cursor= (features.length) ? 'pointer' : '';
+
+                                if (!features.length) {
+                                    popup4.remove();
+                                    return; }
+                                    
+                                var feature= features[0];
+                                        popup4.setLngLat(feature.geometry.coordinates)
+                                        .setHTML(feature.properties.nom)
+                                        .addTo(map);
+                               
+                    
+                                });
+
+                                      
+                                //Interactivité CLICK
+                                   
+                                    //Rugby
+                                map.on('click', function (e) {
+                                    var featuresArts = map.queryRenderedFeatures(e.point, { layers: ['Rugby'] });
+                                    if (!featuresArts.length) {
+                                        return;
+                                        }
+                                    var featureArts = featuresArts[0];
+                                    var htmlContent="<div id ='arts-popup'><h3><b>"+featureArts.properties.organom+"</b></h3><br>Type : "+featureArts.properties.Adresse+"<br>Adresse :"+featureArts.properties.quartier+"</div>"
+                                    var popup = new mapboxgl.Popup() 
+                                    .setLngLat(featureArts.geometry.coordinates)
+                                    .setHTML(htmlContent)
+                                    .addTo(map);
+                               
+                                });
+                                    //Football
+                                      map.on('click', function (e) {
+                                    var featuresMulti = map.queryRenderedFeatures(e.point, { layers: ['Football'] });
+                                    if (!featuresMulti.length) {
+                                        return;
+                                        }
+                                    var featureMulti = featuresMulti[0];
+                                    var htmlContent="<div id ='multi-popup'><h3><b>"+featureMulti.properties.organom+"</b></h3><br>Adresse : "+featureMulti.properties.Adresse+"<br>Quartier :"+featureMulti.properties.Quartier+"</div>"
+                                    var popup = new mapboxgl.Popup() 
+                                    .setLngLat(featureMulti.geometry.coordinates)
+                                    .setHTML(htmlContent)
+                                    .addTo(map);
+                               
+                                });
+                                    //Basket
+                                     map.on('click', function (e) {
+                                    var featuresNat = map.queryRenderedFeatures(e.point, { layers: ['Basket'] });
+                                    if (!featuresNat.length) {
+                                        return;
+                                        }
+                                    var featureNat = featuresNat[0];
+                                    var htmlContent="<div id ='nat-popup'><h3><b>"+featureNat.properties.organom+"</b></h3><br>Adresse :"+featureNat.properties.rivolide+"<br>Quartier : "+featureNat.properties.quarnom+"</div>"
+                                    var popup = new mapboxgl.Popup() 
+                                    .setLngLat(featureNat.geometry.coordinates)
+                                    .setHTML(htmlContent)
+                                    .addTo(map);
+                               
+                                });
+                                    //Gymnases
+                                     map.on('click', function (e) {
+                                    var featuresFit = map.queryRenderedFeatures(e.point, { layers: ['Gymnases'] });
+                                    if (!featuresFit.length) {
+                                        return;
+                                        }
+                                    var featureFit = featuresFit[0];
+                                    var htmlContent="<div id ='nat-popup'><h3><b>"+featureFit.properties.nom_site_p+"</b></h3><br>Adresse : "+featureFit.properties.adresse_po+"<br>Quartier :"+featureFit.properties.adresse__8+"</div>"
+                                    var popup = new mapboxgl.Popup() 
+                                    .setLngLat(featureFit.geometry.coordinates)
+                                    .setHTML(htmlContent)
+                                    .addTo(map);
+                               
+                                });
+                                          
+                               
+
+                                    
+                                // Ajout boutons navigation a la fin du script
+
+                                    var nav = new mapboxgl.NavigationControl();
+                                    map.addControl(nav, 'bottom-right');
+  
+                                    // Ajout Echelle cartographique a la fin du script
+
+                                    map.addControl(new mapboxgl.ScaleControl({
+                                        maxWidth: 120,
+                                        unit: 'metric'}));
+
+                                    
+                        
+
+                                // Configuration onglets géographiques 
+                                document.getElementById('Atalante Champeaux').addEventListener('click', function () 
+                                { map.flyTo({zoom: 14,
+                                center: [-1.714802, 48.114903],
+                                pitch: 60,
+                                bearing: -60});
+                                });
+
+                                // Configuration onglets géographiques 
+                                document.getElementById('La Poterie').addEventListener('click', function () 
+                                { map.flyTo({zoom: 14,
+                                center: [-1.644199, 48.089660],
+                                pitch: 240,
+                                bearing: -240});
+                                });
+
+                                // Configuration onglets géographiques 
+                                document.getElementById('Centre').addEventListener('click', function () 
+                                { map.flyTo({zoom: 14,
+                                center: [-1.681276, 48.112912],
+                                pitch: 50,
+                                bearing: -1 });
+                                });
+
+                              
+                                    
+                                    // Configuration onglets géographiques 
+                                document.getElementById('Bréquigny').addEventListener('click', function () 
+                                { map.flyTo({zoom: 14,
+                                center: [-1.685020, 48.090170],
+                                pitch: 145,
+                                bearing: -300 });
+                                });
+                                    
+                                    // Configuration onglets géographiques 
+                                document.getElementById('Vuegenerale').addEventListener('click', function () 
+                                { map.flyTo({zoom: 13,
+                                center: [-1.670750, 48.109625],
+                                pitch: 75,
+                                bearing: -1});
+                                });
+                                    
+                                </script>
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+                
+                <h2>Les catégories sportives</h2>
+					
+<!--
+                <footer id="footer">
+					
+                        <section>
+							<p>Multi-sports : Foot &bull; Basket &bull; Handball &bull; Pilates &bull; et plein d'autres!</p>
+                            <p>Arts martiaux : Capoeria &bull; Taï-chi &bull; Taekwondo &bull; Karate &bull; et etc</p>
+                            <p>Nature & Eau : </p>
+                          
+						</section>
+						
+                	   <section>
+						  <p>Fitness : </p>
+                            <p>Corp & Esprit : </p>
+                            <p>Jeux d'adresse : </p>
+                        </section>
+                <p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+                        	</footer>
+-->
+
+<!--			</div>-->
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+        <!-- Fin de la copie du script du TD Mapbox 
+        avec Boris - 2eme partie -->
+        
+        
+        
+        
+        
+        
+        
+	</body>
+</html>
